@@ -1,10 +1,13 @@
+import Layout from 'Components/Layout';
 import './App.css';
 import Routers from './Routers';
 
 function App() {
   return (
     <div className="App">
-      <Routers />
+      <Layout>
+        <Routers />
+      </Layout>
     </div>
   );
 }
