@@ -1,12 +1,14 @@
-import { Link } from "react-router-dom";
-import { fetchAxiosCore, useFetch } from "Utils/fetch";
-import { IoLocationSharp } from 'react-icons/io5';
-import { CardProfile } from "Components/Card";
-import { useEffect } from "react";
-import { useState } from "react";
+/** Utils */
+import { useFetch } from "Utils/fetch";
+/** Frameworks */
+import { useState, useEffect } from "react";
+/** Libs */
 import Helmet from "react-helmet";
+/** Components */
+import { CardProfile } from "Components/Card";
 
 const Home = () => {
+    // fetch
     const { data, isLoading } = useFetch('GET', '/users');
     // local state
     const [recentData, recentDataSet] = useState(null);
@@ -27,10 +29,12 @@ const Home = () => {
     }, [])
     //logs    
     return (
-        <main className="">
+        <main>
+            {/* HEAD HELMET */}
             <Helmet>
                 <title>Kumparan Test</title>
             </Helmet>
+            {/* ======== END: HEAD HELMET */}
             <div className="hero min-h-screen bg-base-200">
                 <div className="hero-content text-center">
                     <div className="max-w-md">

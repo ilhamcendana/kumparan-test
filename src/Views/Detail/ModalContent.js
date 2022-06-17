@@ -8,6 +8,7 @@ import { CardPost, CardSkeleton } from "Components/Card";
 import { BsThreeDots } from 'react-icons/bs'
 
 export const ModalContentDetailPost = ({ id, onClickDelete, onClickComment }) => {
+    //FETCH
     const { data: dataPost, isLoading: isLoadingPost } = useFetch('GET', `/posts/${id}`);
     const { data: dataComments, isLoading: isLoadingComments } = useFetch('GET', `/posts/${id}/comments`);
     // local state
@@ -58,9 +59,9 @@ export const ModalContentDetailPost = ({ id, onClickDelete, onClickComment }) =>
 }
 
 export const ModalContentDetailAlbum = ({ id }) => {
+    //fetch
     const { data: dataDetailAlbum, isLoading: isLoadingDetailAlbum } = useFetch('GET', `/albums/${id}/photos`);
     const { data: dataAlbum, isLoading: isLoadingDataAlbum } = useFetch('GET', `/albums/${id}`);
-    console.log(dataDetailAlbum)
     return (
         <div className="overflow-auto h-96 flex flex-col gap-4">
             {!isLoadingDataAlbum && <p className="font-semibold text-xl">{dataAlbum.title}</p>}

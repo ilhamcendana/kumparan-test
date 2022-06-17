@@ -1,7 +1,8 @@
-import Layout from 'Components/Layout';
-import './App.css';
+/** Frameworks */
 import Routers from './Routers';
+/**Libs */
 import { ToastContainer } from 'react-toastify';
+/** Style */
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {

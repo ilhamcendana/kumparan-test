@@ -1,5 +1,5 @@
+/** Libs */
 import Helmet from "react-helmet";
-
 
 const NotFound = () => {
     return (

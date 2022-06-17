@@ -6,3 +6,5 @@ export default configureStore({
         users: reducerUsers
     },
 })
+
+// NO USE OF REDUX BUT AT LEAST I CAN SHOW YOU HOW I SET IT UP

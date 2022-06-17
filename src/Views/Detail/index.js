@@ -15,13 +15,17 @@ import { ModalContentDetailPost, ModalContentDetailAlbum } from "./ModalContent"
 
 
 const DetailProfile = () => {
+    // rrd
     const params = useParams();
     const currentTab = params.tab;
+
+    //fetch
     const { data: dataUser, isLoading: isLoadingUser } = useFetch('GET', `/users/${params.id}`);
     const { data: dataTab, isLoading: isLoadingTab } = useFetch('GET', `/users/${params.id}/${currentTab}`);
 
-    const routeChild = ['posts', 'albums'];
 
+
+    //local state
     const [scaleAvatar, scaleAvatarSet] = useState(1);
     const [isModalOpenPost, isModalOpenPostSet] = useState(false);
     const [idSelectedPost, idSelectedPostSet] = useState(null);
@@ -34,26 +38,26 @@ const DetailProfile = () => {
     });
     const [isLoadingAddPost, isLoadingAddPostSet] = useState(false);
 
+    //useeffect for animation
     useEffect(() => {
         function detectScroll() {
             const calc = ((90 - window.scrollY) / 100) * 2;
             const value = window.scrollY === 0 ? 1 : window.scrollY >= 90 ? 0 : calc >= 1 ? 1 : calc;
             scaleAvatarSet(value);
-            // console.log(((90 - window.scrollY) / 100) * 2)
         }
         window.addEventListener('scroll', detectScroll);
         return () => window.removeEventListener('scroll', detectScroll)
     }, []);
 
+    //var
+    const routeChild = ['posts', 'albums'];
     const translateCalc = (2 - 10) / scaleAvatar;
     const translateValue = translateCalc <= -100 ? -100 : translateCalc;
     const heightCalc = ((scaleAvatar * 2) * (310 - 160));
     const heightValue = heightCalc <= 150 ? 200 : heightCalc;
-    // console.log(dataTab);
-    // console.log(dataUser);
-
     const firstName = dataUser?.name.split(" ")[0];
 
+    // func 
     async function submitPostHandler() {
         isLoadingAddPostSet(true);
         const { data } = await fetchAxiosCore('POST', '/posts',
@@ -103,15 +107,19 @@ const DetailProfile = () => {
         }
     }
 
+    // if route doesnt match
     if (!routeChild.includes(currentTab)) return <Navigate to='*' />
 
     return (
         <main>
+            {/* HEAD HELMET */}
             <Helmet>
                 <title>{`${firstName || 'user'} | Kumparan Test`}</title>
             </Helmet>
+            {/* ======== END: HEAD HELMET */}
 
             <div className="container mx-auto flex flex-col gap-4 items-center pb-8 relative">
+                {/* PROFILE DETAIL USER */}
                 {!isLoadingUser ?
                     <div style={{ height: `${heightValue}px`, transition: '1s' }} className="fixed z-20 w-full flex flex-col gap-4 items-center bg-base-100 py-8 shadow-xs">
                         <div className={`avatar`}>
@@ -146,6 +154,9 @@ const DetailProfile = () => {
                     :
                     <CardProfileSkeleton />
                 }
+                {/* ======== END: PROFILE DETAIL USER */}
+
+                {/* LIST POST AND ALBUM  */}
                 <div className={`flex flex-col gap-4 px-4 ${isLoadingUser ? 'mt-8' : 'mt-[340px]'} max-w-xl w-full`}>
                     <div className="w-full justify-between items-center flex">
                         <h3 className="text-4xl font-semibold uppercase">{currentTab || ''}</h3>
@@ -186,6 +197,8 @@ const DetailProfile = () => {
                     }
                 </div>
             </div>
+            {/* ========== END: LIST POST AND ALBUM  */}
+            {/* MODAL POST */}
             <Modal isOpen={isModalOpenPost} onClose={() => isModalOpenPostSet(false)}>
                 <ModalContentDetailPost
                     id={idSelectedPost}
@@ -193,6 +206,7 @@ const DetailProfile = () => {
                     onClickComment={comment => submitComment(comment)}
                 />
             </Modal>
+            {/* MODAL ALBUM */}
             <Modal isOpen={isModalOpenAlbum} onClose={() => isModalOpenAlbumSet(false)}>
                 <ModalContentDetailAlbum id={idSelectedAlbum} />
             </Modal>
