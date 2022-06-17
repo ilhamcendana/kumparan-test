@@ -203,7 +203,8 @@ const DetailProfile = () => {
                 <ModalContentDetailPost
                     id={idSelectedPost}
                     onClickDelete={onClickDeleteHandler}
-                    onClickComment={comment => submitComment(comment)}
+                    onClickComment={comment => submitComment(comment)}     
+                    userId={params.id}               
                 />
             </Modal>
             {/* MODAL ALBUM */}
