@@ -6,6 +6,7 @@ import { fetchAxiosCore, useFetch } from "Utils/fetch";
 import { CardPost, CardSkeleton } from "Components/Card";
 /** Icons */
 import { BsThreeDots } from 'react-icons/bs'
+/** Libs */
 import { toast } from "react-toastify";
 
 export const ModalContentDetailPost = ({ id, onClickDelete, onClickComment, userId }) => {
