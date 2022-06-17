@@ -39,7 +39,7 @@ const Home = () => {
                 <div className="hero-content text-center">
                     <div className="max-w-md">
                         <h1 className={`text-5xl font-bold`}>Hello there</h1>
-                        <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+                        <p className="py-6">This is my result of the test, take your time to explore, <br/> Thank you very much!</p>
                         <button onClick={goBelow} className="btn btn-primary rounded-lg normal-case">Get Started</button>
                     </div>
                 </div>
